@@ -1,0 +1,3 @@
+D:/CLion/projects/TrabalhoPratico/cmake-build-debug/CMakeFiles/TrabalhoPratico.dir
+D:/CLion/projects/TrabalhoPratico/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/CLion/projects/TrabalhoPratico/cmake-build-debug/CMakeFiles/rebuild_cache.dir
