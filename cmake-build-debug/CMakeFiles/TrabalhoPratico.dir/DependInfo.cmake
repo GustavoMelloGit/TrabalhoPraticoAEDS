@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "D:/CLion/projects/TrabalhoPratico/main.c" "D:/CLion/projects/TrabalhoPratico/cmake-build-debug/CMakeFiles/TrabalhoPratico.dir/main.c.obj"
+  "D:/CLion/projects/TrabalhoPratico/pilhaCalculadora.c" "D:/CLion/projects/TrabalhoPratico/cmake-build-debug/CMakeFiles/TrabalhoPratico.dir/pilhaCalculadora.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -168,6 +168,33 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrabalhoPratico.dir\build.make CMakeFiles/TrabalhoPratico.dir/main.c.s
 .PHONY : main.c.s
 
+pilhaCalculadora.obj: pilhaCalculadora.c.obj
+
+.PHONY : pilhaCalculadora.obj
+
+# target to build an object file
+pilhaCalculadora.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrabalhoPratico.dir\build.make CMakeFiles/TrabalhoPratico.dir/pilhaCalculadora.c.obj
+.PHONY : pilhaCalculadora.c.obj
+
+pilhaCalculadora.i: pilhaCalculadora.c.i
+
+.PHONY : pilhaCalculadora.i
+
+# target to preprocess a source file
+pilhaCalculadora.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrabalhoPratico.dir\build.make CMakeFiles/TrabalhoPratico.dir/pilhaCalculadora.c.i
+.PHONY : pilhaCalculadora.c.i
+
+pilhaCalculadora.s: pilhaCalculadora.c.s
+
+.PHONY : pilhaCalculadora.s
+
+# target to generate assembly for a file
+pilhaCalculadora.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrabalhoPratico.dir\build.make CMakeFiles/TrabalhoPratico.dir/pilhaCalculadora.c.s
+.PHONY : pilhaCalculadora.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -180,6 +207,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... pilhaCalculadora.obj
+	@echo ... pilhaCalculadora.i
+	@echo ... pilhaCalculadora.s
 .PHONY : help
 
 

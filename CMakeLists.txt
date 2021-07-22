@@ -3,4 +3,11 @@ project(TrabalhoPratico C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(TrabalhoPratico main.c)
+set(PROJECT_HEADERS
+        pilhaCaluladora.h
+        )
+
+add_executable(TrabalhoPratico
+        main.c
+        pilhaCalculadora.c
+        )
