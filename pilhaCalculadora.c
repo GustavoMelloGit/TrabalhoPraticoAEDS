@@ -68,7 +68,6 @@ char *infixaParaPosfixa(char *exp) {
         }
     }
     posFixa[j] = '\0';
-    imprime(pAux);
     return posFixa;
 }
 
