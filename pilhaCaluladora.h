@@ -20,14 +20,22 @@ typedef struct {
 
 //Definindo as funções
 
+char *infixaParaPosfixa(char *);
+
 int empilha(Pilha *, Item *);
 
 int desempilha(Pilha *, Item *);
+
+int verificaExpressao(char []);
+
+int estaVazia(Pilha);
+
+int verificaSimboloMatematico(char *);
 
 void criaPilhaVazia(Pilha *pilha);
 
 void imprime(Pilha);
 
-char *infixaParaPosfixa(char *);
-
 void resolveExpressao(Pilha *, char *);
+
+void liberaPilha(Pilha *);

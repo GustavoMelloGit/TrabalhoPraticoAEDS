@@ -3,130 +3,6 @@
 #include <string.h>
 #include "pilhaCaluladora.h"
 
-//Função responsável por criar uma pilha vazia
-void criaPilhaVazia(Pilha *pilha) {
-    pilha->topo = (Celula *) malloc(sizeof(Celula));
-    pilha->fundo = pilha->topo;
-    pilha->topo->proximo = NULL;
-    pilha->tamanho = 0;
-}
-
-//Verifica se a pilha recebida está vazia
-int estaVazia(Pilha pilha) {
-    return (pilha.tamanho == 0);
-}
-
-//Empilha um item no topo da pilha
-int empilha(Pilha *pPilha, Item *pItem) {
-    Celula *pNovo;
-    pNovo = (Celula *) malloc(sizeof(Celula));
-    pPilha->topo->item = *pItem;
-    pNovo->proximo = pPilha->topo;
-    pPilha->topo = pNovo;
-    pPilha->tamanho++;
-    return 1;
-}
-
-//Desempilha item no topo da pilha
-int desempilha(Pilha *pPilha, Item *pItem) {
-    Celula *pAux;
-
-    if (estaVazia(*pPilha)) return 0;
-
-    pAux = pPilha->topo;
-    pPilha->topo = pAux->proximo;
-    *pItem = pAux->proximo->item;
-    free(pAux);
-    pPilha->tamanho--;
-
-    return 1;
-}
-
-//Função responsável por validar a expressão infixa digitada pelo usuário
-int verificaExpressao(char expr[]) {
-    int contAbre = 0, contFecha = 0;
-
-    //Verifica se a expressão se inicia com um abre parênteses
-    if (expr[0] != '(') return 0;
-
-    //Verifica se a quantidade de parênteses abertos são o mesmo dos fechados
-    if (expr[0] == '(') {
-        for (int i = 0; i < strlen(expr); ++i) {
-            if (expr[i] == '(') contAbre++;
-            else if (expr[i] == ')') contFecha++;
-        }
-    } else exit(1);
-
-    return (contAbre == contFecha);
-}
-
-//Função responsável por verificar se o caractere recebido é uma operação válida
-int verificaSimboloMatematico(char *valor) {
-    if (valor[0] == '+' || valor[0] == '-' || valor[0] == '*' || valor[0] == '/') return 1;
-    return 0;
-}
-
-//Função responsável por realizar as contas da expressao pós-fixa
-void resolveExpressao(Pilha *pilha, char *x) {
-    Item i1, i2, iAux;
-
-    //Percorre a expressão pós-fixa
-    for (int i = 0; x[i] != '\0'; ++i) {
-
-        //Verifica se a string está em um espaço e se a próxima posição não é uma operação
-        if (x[i] == ' ' && !verificaSimboloMatematico(&x[i + 1])) {
-            iAux.valor = 0;
-            empilha(pilha, &iAux);
-            imprime(*pilha);
-        }
-
-        //Verifica se a string está na posição de um número
-        else if (x[i] != ' ' && !verificaSimboloMatematico(&x[i])) {
-            desempilha(pilha, &iAux);
-            iAux.valor = iAux.valor * 10 + (x[i] - '0');
-            empilha(pilha, &iAux);
-            imprime(*pilha);
-        }
-
-            //Verifica se está em uma operação e então realiza as contas
-        else if (x[i] != ' ') {
-            desempilha(pilha, &i1);
-            desempilha(pilha, &i2);
-
-            switch (x[i]) {
-                case '+':
-                    printf("=================================\n");
-                    printf("Somando valores da pilha: %d + %d\n", i2.valor, i1.valor);
-                    i1.valor = i2.valor + i1.valor;
-                    empilha(pilha, &i1);
-                    imprime(*pilha);
-                    break;
-                case '-':
-                    printf("=================================\n");
-                    printf("Subtraindo valores da pilha: %d - %d\n", i2.valor, i1.valor);
-                    i1.valor = i2.valor - i1.valor;
-                    empilha(pilha, &i1);
-                    imprime(*pilha);
-                    break;
-                case '*':
-                    printf("=================================\n");
-                    printf("Multiplicando valores da pilha: %d * %d\n", i2.valor, i1.valor);
-                    i1.valor = i2.valor * i1.valor;
-                    empilha(pilha, &i1);
-                    imprime(*pilha);
-                    break;
-                case '/':
-                    printf("=================================\n");
-                    printf("Dividindo valores da pilha: %d / %d\n", i2.valor, i1.valor);
-                    i1.valor = i2.valor / i1.valor;
-                    empilha(pilha, &i1);
-                    imprime(*pilha);
-                    break;
-            }
-        }
-    }
-}
-
 //Transforma a expressão infixa digitada pelo usuário para pós-fixa
 char *infixaParaPosfixa(char *exp) {
     int n = strlen(exp), j = 0;
@@ -196,6 +72,69 @@ char *infixaParaPosfixa(char *exp) {
     return posFixa;
 }
 
+//Empilha um item no topo da pilha
+int empilha(Pilha *pPilha, Item *pItem) {
+    Celula *pNovo;
+    pNovo = (Celula *) malloc(sizeof(Celula));
+    pPilha->topo->item = *pItem;
+    pNovo->proximo = pPilha->topo;
+    pPilha->topo = pNovo;
+    pPilha->tamanho++;
+    return 1;
+}
+
+//Desempilha item no topo da pilha
+int desempilha(Pilha *pPilha, Item *pItem) {
+    Celula *pAux;
+
+    if (estaVazia(*pPilha)) return 0;
+
+    pAux = pPilha->topo;
+    pPilha->topo = pAux->proximo;
+    *pItem = pAux->proximo->item;
+    free(pAux);
+    pPilha->tamanho--;
+
+    return 1;
+}
+
+//Função responsável por validar a expressão infixa digitada pelo usuário
+int verificaExpressao(char expr[]) {
+    int contAbre = 0, contFecha = 0;
+
+    //Verifica se a expressão se inicia com um abre parênteses
+    if (expr[0] != '(') return 0;
+
+    //Verifica se a quantidade de parênteses abertos são o mesmo dos fechados
+    if (expr[0] == '(') {
+        for (int i = 0; i < strlen(expr); ++i) {
+            if (expr[i] == '(') contAbre++;
+            else if (expr[i] == ')') contFecha++;
+        }
+    } else exit(1);
+
+    return (contAbre == contFecha);
+}
+
+//Verifica se a pilha recebida está vazia
+int estaVazia(Pilha pilha) {
+    return (pilha.tamanho == 0);
+}
+
+//Função responsável por verificar se o caractere recebido é uma operação válida
+int verificaSimboloMatematico(char *valor) {
+    if (valor[0] == '+' || valor[0] == '-' || valor[0] == '*' || valor[0] == '/') return 1;
+    return 0;
+}
+
+//Função responsável por criar uma pilha vazia
+void criaPilhaVazia(Pilha *pilha) {
+    pilha->topo = (Celula *) malloc(sizeof(Celula));
+    pilha->fundo = pilha->topo;
+    pilha->topo->proximo = NULL;
+    pilha->tamanho = 0;
+}
+
 //Imprime a pilha na tela
 void imprime(Pilha pilha) {
     pilha.topo = pilha.topo->proximo;
@@ -206,4 +145,75 @@ void imprime(Pilha pilha) {
         pilha.topo = pilha.topo->proximo;
     }
     printf("\n");
+}
+
+//Função responsável por realizar as contas da expressao pós-fixa
+void resolveExpressao(Pilha *pilha, char *x) {
+    Item i1, i2, iAux;
+
+    //Percorre a expressão pós-fixa
+    for (int i = 0; x[i] != '\0'; ++i) {
+
+        //Verifica o "E"
+        if (x[i] == ' ' && !verificaSimboloMatematico(&x[i + 1])) {
+            iAux.valor = 0;
+            empilha(pilha, &iAux);
+            imprime(*pilha);
+        }
+
+            //Verifica se a string está na posição de um número
+        else if (x[i] != ' ' && !verificaSimboloMatematico(&x[i])) {
+            desempilha(pilha, &iAux);
+            iAux.valor = iAux.valor * 10 + (x[i] - '0');
+            empilha(pilha, &iAux);
+            imprime(*pilha);
+        }
+
+            //Verifica se está em uma operação e então realiza as contas
+        else if (x[i] != ' ') {
+            desempilha(pilha, &i1);
+            desempilha(pilha, &i2);
+
+            switch (x[i]) {
+                case '+':
+                    printf("=================================\n");
+                    printf("Somando valores da pilha: %d + %d\n", i2.valor, i1.valor);
+                    i1.valor = i2.valor + i1.valor;
+                    empilha(pilha, &i1);
+                    imprime(*pilha);
+                    break;
+                case '-':
+                    printf("=================================\n");
+                    printf("Subtraindo valores da pilha: %d - %d\n", i2.valor, i1.valor);
+                    i1.valor = i2.valor - i1.valor;
+                    empilha(pilha, &i1);
+                    imprime(*pilha);
+                    break;
+                case '*':
+                    printf("=================================\n");
+                    printf("Multiplicando valores da pilha: %d * %d\n", i2.valor, i1.valor);
+                    i1.valor = i2.valor * i1.valor;
+                    empilha(pilha, &i1);
+                    imprime(*pilha);
+                    break;
+                case '/':
+                    printf("=================================\n");
+                    printf("Dividindo valores da pilha: %d / %d\n", i2.valor, i1.valor);
+                    i1.valor = i2.valor / i1.valor;
+                    empilha(pilha, &i1);
+                    imprime(*pilha);
+                    break;
+            }
+        }
+    }
+}
+
+void liberaPilha(Pilha *pilha) {
+    Celula *cAux;
+
+    while (pilha->topo != NULL) {
+        cAux = pilha->topo;
+        pilha->topo = pilha->topo->proximo;
+        free(cAux);
+    }
 }

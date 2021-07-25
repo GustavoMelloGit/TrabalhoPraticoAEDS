@@ -32,5 +32,7 @@ int main() {
     //Realiza as operações
     resolveExpressao(&pilha, expressaoPosfixa);
 
+    liberaPilha(&pilha);
+
     return 0;
 }
