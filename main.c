@@ -13,18 +13,16 @@ void mostraMenu(){
 
 int main() {
     mostraMenu();
+    Pilha pilha;
 
-    Pilha calculadora;
-    Item i1, i2;
-    i1.numero = 1;
-    i2.numero = 2;
+    char expressaoInfixa[tam], *expressaoPosfixa;
+    fgets(expressaoInfixa, tam, stdin);
 
-    criaPilhaVazia(&calculadora);
-    empilha(&calculadora, &i1);
-    empilha(&calculadora, &i2);
-    imprimePilha(calculadora);
+    criaPilhaVazia(&pilha);
+    expressaoPosfixa = infixaParaPosfixa(expressaoInfixa);
+    puts(expressaoPosfixa);
 
-
+    resolveExpressao(&pilha, expressaoPosfixa);
 
     return 0;
 }

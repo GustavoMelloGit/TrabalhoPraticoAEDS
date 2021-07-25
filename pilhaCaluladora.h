@@ -1,22 +1,28 @@
-typedef struct{
-    int numero;
-}Item;
+#define tam 50
 
-typedef struct TCelula{
+typedef struct {
+    int valor;
+} Item;
+
+typedef struct TCelula {
     Item item;
     struct TCelula *proximo;
-}Celula;
+} Celula;
 
-typedef struct{
+typedef struct {
     Celula *fundo;
     Celula *topo;
     int tamanho;
-}Pilha;
+} Pilha;
 
-int desempilha(Pilha*, Item*);
-int estaVazia(Pilha);
-int empilha(Pilha*, Item*);
-int tamanho(Pilha);
-void criaPilhaVazia(Pilha*);
-void entraValor();
-void imprimePilha(Pilha);
+int empilha(Pilha *, Item *);
+
+int desempilha(Pilha *, Item *);
+
+void criaPilhaVazia(Pilha *pilha);
+
+void imprime(Pilha);
+
+char *infixaParaPosfixa(char *);
+
+void resolveExpressao(Pilha *, char *);
