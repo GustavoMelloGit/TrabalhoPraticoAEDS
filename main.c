@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "pilhaCaluladora.h"
 
+//Função responsável por imprimir um menu na tela (apenas visual)
 void mostraMenu(){
     printf("\n========Calculadora========\n");
     printf("      | 1    2    3 |\n");
@@ -12,16 +13,23 @@ void mostraMenu(){
 }
 
 int main() {
-    mostraMenu();
     Pilha pilha;
+    criaPilhaVazia(&pilha);
 
     char expressaoInfixa[tam], *expressaoPosfixa;
+
+    mostraMenu();
+
+    //Recebe a expressão infixa digitada pelo usuário
     fgets(expressaoInfixa, tam, stdin);
 
-    criaPilhaVazia(&pilha);
+    //Transforma a expressão para pós-fixa
     expressaoPosfixa = infixaParaPosfixa(expressaoInfixa);
+
+    //imprime a expressão pós-fixa
     puts(expressaoPosfixa);
 
+    //Realiza as operações
     resolveExpressao(&pilha, expressaoPosfixa);
 
     return 0;

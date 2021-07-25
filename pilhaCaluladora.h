@@ -1,5 +1,7 @@
 #define tam 50
 
+//Definindo as estruturas
+
 typedef struct {
     int valor;
 } Item;
@@ -14,6 +16,9 @@ typedef struct {
     Celula *topo;
     int tamanho;
 } Pilha;
+
+
+//Definindo as funções
 
 int empilha(Pilha *, Item *);
 

@@ -80,7 +80,7 @@ void resolveExpressao(Pilha *pilha, char *x) {
             imprime(*pilha);
         }
 
-            //Verifica se a string está na posição de um número
+        //Verifica se a string está na posição de um número
         else if (x[i] != ' ' && !verificaSimboloMatematico(&x[i])) {
             desempilha(pilha, &iAux);
             iAux.valor = iAux.valor * 10 + (x[i] - '0');
