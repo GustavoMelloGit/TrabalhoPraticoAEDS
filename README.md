@@ -49,7 +49,7 @@ Por exemplo, se o usuário digitasse os seguintes valores: **E 9 0 E 2 0 E 1 5 E
 |5 |[ 90 / 40 / 5 ] |
 |+ |[ 90 / 45 ] |
 |/ |[ 2 ] |
-No final, imprima o valor **2**, que é o resultado de **90 20 15 13 - \* 5 + /**, ou seja, **(90/((20\*(15-13))+5))** na notação habitual infixa. 
+
 
 O programa deve criar um vetor de caracteres (string) e pedir ao usuário para digitar a expressão na **notação habitual infixa**. Converta a expressão para a notação Polonesa Reversa e imprima o resultado da conversão na tela (**Dica:** para mais informações de como converter, acesse[ este link)](https://www.ime.usp.br/~pf/algoritmos/aulas/pilha.html). Posteriormente, execute cada uma das ações da expressão, imprimindo na tela, **passo a passo**, o conteúdo da pilha. 
 
